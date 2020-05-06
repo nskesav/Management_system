@@ -1,0 +1,82 @@
+
+	{% load static %}
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Login V1</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->	
+		<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico'%}"/>
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'registration/bootstrap/css/bootstrap.min.css'%}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'registration/fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'registration/animate/animate.css'%}">
+	<!--===============================================================================================-->	
+		<link rel="stylesheet" type="text/css" href="{% static 'registration/css-hamburgers/hamburgers.min.css'%}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'registration/select2/select2.min.css'%}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'registration/css/util.css'%}">
+		<link rel="stylesheet" type="text/css" href="{% static 'registration/css/main.css'%}">
+	<!--===============================================================================================-->
+	</head>
+	<body>
+		
+		<div class="limiter">
+			<div class="container-login100">
+				<div class="wrap-login100">
+					<div class="login100-pic js-tilt" data-tilt>
+						<img src="{% static 'registration/images/peslogo.png'%}" alt="IMG">
+					</div>
+	
+					<div class="login100-form">
+											{% csrf_token %}
+						<span class="login100-form-title">
+							Thanks For using Our Services
+						</span>
+	
+						<div class="wrap-input100 validate-input" data-validate = "Valid username is required!!!!!!">
+							<form action = '/accounts/login'>
+								<input type ="submit" value = "LOGIN"  class="login100-form-btn" />
+							</form>
+							<br>
+							<form action = '/accounts/land'>
+								<input type ="submit" value = "GO Home"  class="login100-form-btn" />
+							</form>	
+						</div>
+					</div>
+
+					<script>
+						{% for message in messages %}
+							alert("{{message}}");
+						{% endfor %}
+					</script>
+				</div>
+			</div>
+		</div>
+		
+		
+	
+		
+	<!--===============================================================================================-->	
+		<script src="{% static 'registration/jquery/jquery-3.2.1.min.js'%}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'registration/bootstrap/js/popper.js'%}"></script>
+		<script src="{% static 'registration/bootstrap/js/bootstrap.min.js'%}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'registration/select2/select2.min.js'%}"></script>
+	<!--===============================================================================================-->
+		<script src="{% static 'registration/tilt/tilt.jquery.min.js'%}"></script>
+		<script >
+			$('.js-tilt').tilt({
+				scale: 1.1
+			})
+		</script>
+	<!--===============================================================================================-->
+		<script src="{% static 'registration/js/main.js'%}"></script>
+	
+	</body>
+	</html>
