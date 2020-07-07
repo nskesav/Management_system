@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'recurrence'
+	'recurrence',
+	'report_builder'
 
 ]
 
@@ -65,6 +66,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+				'django.template.context_processors.static',# newly added due to reports
+				'django.template.context_processors.media',# newly added due to reports
             ],
         },
     },
@@ -134,4 +137,4 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     ('recurrence',"accounts/static"),
 ]
-LOGIN_REDIRECT_URL = '/accounts/home'
+LOGIN_REDIRECT_URL = 'post_login'

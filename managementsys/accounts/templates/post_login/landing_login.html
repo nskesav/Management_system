@@ -2,401 +2,801 @@
 {% load static %}
 <html>
 <head>
- <title>Page Title</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<title>Timetable</title>
 </head>
-
+<style>
+	.wrapper{
+		
+		text-align: center;
+	}
+	.time-table{
+		width:75%;
+		
+		display: inline-block;
+	}
+</style>
 <body>
 	{% if request.user.is_authenticated %}
-<div>
-	<ul>
-		<br>
-		<li>Hello {{ user.get_username}}</li> <br>
-		<li> <button><a href="/accounts/logout">LOGOUT</a></button></li>
-	</ul>
-</div>
-<caption>Classes Time Table of {{uname}} </caption>
 
-<table border = "2" cellspacing ="5" cellpadding ="5">
-  <tr>
-	<th></th>
-    <th>8:00 to 9:00</th>
-    <th>9:00 to 10:00</th> 
-    <th>10:00 to 10:30</th>
-	<th>10:30 to 11:30</th>
-	<th>11:30 to 12:30</th>
-	<th>12:30 to 1:15</th>
-	<th>1:15 to 2:15</th>
-	<th>2:15 to 3:15</th>
-  </tr>
-  <tr align = 'center' class = "Monday">
-	<th>Monday</th>
-	<td id = 'mon1'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'mon1' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'mon1' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'mon1' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'mon1' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'mon1' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'mon2'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'mon2' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'mon2' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'mon2' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'mon2' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'mon2' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-    <td rowspan = "6">	</td>
-	<td id = 'mon3'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'mon3' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'mon3' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'mon3' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'mon3' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'mon3' type = 'hidden' name = 'submit'/>
-		</form>
-	</td> 
-	<td id = 'mon4'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'mon4' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'mon4' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'mon4' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'mon4' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'mon4' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td rowspan = "6">	</td> 
-	<td id = 'mon5'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'mon5' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'mon5' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'mon5' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'mon5' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'mon5' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'mon6'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'mon6' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'mon6' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'mon6' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'mon6' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'mon6' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-  </tr>
- <tr class = "Tuesday">
-	<th>Tuesday</th>
-	<td id = 'tue1'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'tue1' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'tue1' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'tue1' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'tue1' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'tue1' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'tue2'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'tue2' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'tue2' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'tue2' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'tue2' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'tue2' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'tue3'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'tue3' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'tue3' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'tue3' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'tue3' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'tue3' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'tue4'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'tue4' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'tue4' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'tue4' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'tue4' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'tue4' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'tue5'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'tue5' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'tue5' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'tue5' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'tue5' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'tue5' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'tue6'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'tue6' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'tue6' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'tue6' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'tue6' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'tue6' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-  </tr>
-   <tr class = "Wednesday">
-	<th>Wednesday</th>
-    <td id = 'wed1'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'wed1' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'wed1' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'wed1' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'wed1' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'wed1' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'wed2'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'wed2' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'wed2' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'wed2' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'wed2' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'wed2' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'wed3'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'wed3' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'wed3' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'wed3' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'wed3' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'wed3' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'wed4'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'wed4' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'wed4' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'wed4' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'wed4' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'wed4' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'wed5'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'wed5' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'wed5' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'wed5' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'wed5' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'wed5' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'wed6'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'wed6' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'wed6' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'wed6' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'wed6' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'wed6' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-  </tr>
-   <tr class = "Thursday">
-	<th>Thursday</th>
-    <td id = 'thur1'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'thur1' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'thur1' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'thur1' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'thur1' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'thur1' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'thur2'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'thur2' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'thur2' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'thur2' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'thur2' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'thur2' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'thur3'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'thur3' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'thur3' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'thur3' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'thur3' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'thur3' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'thur4'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'thur4' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'thur4' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'thur4' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'thur4' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'thur4' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'thur5'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'thur5' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'thur5' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'thur5' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'thur5' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'thur5' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'thur6'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'thur6' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'thur6' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'thur6' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'thur6' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'thur6' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-  </tr>
-   <tr class = "Friday">
-	<th>Friday</th>
-    <td id = 'fri1'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'fri1' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'fri1' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'fri1' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'fri1' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'fri1' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'fri2'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'fri2' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'fri2' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'fri2' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'fri2' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'fri2' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'fri3'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'fri3' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'fri3' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'fri3' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'fri3' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'fri3' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'fri3'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'fri4' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'fri4' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'fri4' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'fri4' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'fri4' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'fri5'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'fri5' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'fri5' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'fri5' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'fri5' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'fri5' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'fri6'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'fri6' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'fri6' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'fri6' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'fri6' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'fri6' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-  </tr>
-  <tr class = "Saturday">
-	<th>Saturday</th>
-    <td id = 'sat1'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'sat1' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'sat1' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'sat1' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'sat1' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'sat1' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'sat2'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'sat2' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'sat2' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'sat2' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'sat2' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'sat2' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-	<td id = 'sat3'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'sat3' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'sat3' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'sat3' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'sat3' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'sat3' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'sat4'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'sat4' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'sat4' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'sat4' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'sat4' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'sat4' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'sat5'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'sat5' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'sat5' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'sat5' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'sat5' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'sat5' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td> 
-	<td id = 'sat6'>
-		<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
-			<input class = 'sat6' type = 'hidden' name = 'sem_section' value = ''/>
-			<input class = 'sat6' type = 'hidden' name = 'day_name' value = ''/>
-			<input class = 'sat6' type = 'hidden' name = 'hour_no' value = ''/>
-			<input class = 'sat6' type = 'hidden' name = 'subject_id' value = ''/>
-			<input class = 'sat6' type = 'hidden' name = 'submit' value = ''/>
-		</form>
-	</td>
-  </tr>
-</table>
+	<nav  class="nav justify-content-end nav-fill" style="padding: 10px;font-size: larger;background-color: rgb(229, 230, 227);">	
+		<br>
+		
+		<a class="nav-link active " href="#" data-toggle="collapse">Hello , {{ user.get_username}} </a>
+		<p class="nav-link active " >&nbsp;&nbsp;</p>
+		<p class="nav-link " >{{dayname}}</p>
+		<p class="nav-link " >{{date}} &nbsp;&nbsp;&nbsp;&nbsp;</p>
+		
+		<button class="btn btn-danger"><a class="nav-link disabled"  href="/accounts/logout" style="text-decoration: none;color: white;">LOGOUT</a></button>
+
+
+	</nav >
+
+<br><br>
+
+
+
+<div class = "wrapper">
+	<div class="table-responsive-md time-table">
+		<p style="font-size:larger;">{{uname}}, Here's your Schedule </p><br>
+		<table class="table table-bordered" >
+			<thead>
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">8:00 to 9:00</th>
+					<th scope="col">9:00 to 10:00</th> 
+					<th scope="col">10:00 to 10:30</th>
+					<th scope="col">10:30 to 11:30</th>
+					<th scope="col">11:30 to 12:30</th>
+					<th scope="col">12:30 to 1:15</th>
+					<th scope="col">1:15 to 2:15</th>
+					<th scope="col">2:15 to 3:15</th>
+				  </tr>
+			</thead>
+			<tbody>
+				<tr class = "Monday">
+					<th scope="row" id = "Monday">Monday</th>
+					<td id = 'mon1'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'mon1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'mon1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'mon1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'mon1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'mon1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'mon1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rmon1' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rmon1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rmon1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rmon1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rmon1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rmon1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rmon1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'mon2'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'mon2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'mon2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'mon2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'mon2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'mon2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'mon2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rmon2' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rmon2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rmon2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rmon2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rmon2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rmon2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rmon2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td rowspan = "6" > <br><br><br><br><br><br><br>BREAK </td>
+					<td id = 'mon3'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'mon3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'mon3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'mon3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'mon3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'mon3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'mon3 btn btn-outline-secondary' type = 'hidden' name = 'submit'/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rmon3' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rmon3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rmon3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rmon3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rmon3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rmon3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rmon3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'mon4'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'mon4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'mon4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'mon4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'mon4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'mon4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'mon4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rmon4' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rmon4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rmon4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rmon4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rmon4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rmon4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rmon4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td rowspan = "6" > <br><br><br><br><br><br><br>BREAK </td>
+					<td id = 'mon5'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'mon5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'mon5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'mon5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'mon5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'mon5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'mon5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rmon5' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rmon5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rmon5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rmon5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rmon5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rmon5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rmon5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'mon6'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'mon6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'mon6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'mon6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'mon6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'mon6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'mon6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rmon6' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rmon6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rmon6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rmon6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rmon6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rmon6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rmon6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+				  </tr>
+				 <tr scope="row" class = "Tuesday">
+					<th id = "Tuesday">Tuesday</th>
+					<td id = 'tue1'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'tue1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'tue1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'tue1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'tue1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'tue1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'tue1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rtue1' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rtue1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rtue1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rtue1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rtue1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rtue1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rtue1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'tue2'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'tue2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'tue2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'tue2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'tue2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'tue2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'tue2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rtue2' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rtue2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rtue2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rtue2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rtue2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rtue2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rtue2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'tue3'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'tue3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'tue3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'tue3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'tue3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'tue3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'tue3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rtue3' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rtue3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rtue3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rtue3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rtue3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rtue3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rtue3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'tue4'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'tue4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'tue4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'tue4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'tue4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'tue4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'tue4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rtue4' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rtue4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rtue4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rtue4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rtue4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rtue4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rtue4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'tue5'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'tue5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'tue5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'tue5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'tue5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'tue5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'tue5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rtue5' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rtue5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rtue5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rtue5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rtue5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rtue5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rtue5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'tue6'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'tue6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'tue6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'tue6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'tue6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'tue6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'tue6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rtue6' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rtue6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rtue6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rtue6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rtue6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rtue6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rtue6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+				  </tr>
+				   <tr scope="row" class = "Wednesday">
+					<th id = "Wednesday">Wednesday</th>
+					<td id = 'wed1'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'wed1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'wed1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'wed1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'wed1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'wed1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'wed1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rwed1' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rwed1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rwed1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rwed1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rwed1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rwed1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rwed1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'wed2'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'wed2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'wed2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'wed2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'wed2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'wed2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'wed2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rwed2' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rwed2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rwed2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rwed2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rwed2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rwed2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rwed2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'wed3'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'wed3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'wed3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'wed3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'wed3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'wed3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'wed3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rwed3' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rwed3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rwed3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rwed3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rwed3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rwed3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rwed3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'wed4'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'wed4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'wed4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'wed4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'wed4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'wed4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'wed4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rwed4' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rwed4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rwed4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rwed4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rwed4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rwed4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rwed4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'wed5'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'wed5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'wed5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'wed5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'wed5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'wed5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'wed5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rwed5' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rwed5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rwed5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rwed5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rwed5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rwed5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rwed5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'wed6'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'wed6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'wed6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'wed6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'wed6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'wed6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'wed6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rwed6' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rwed6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rwed6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rwed6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rwed6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rwed6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rwed6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+				  </tr>
+				   <tr scope="row" class = "Thursday">
+					<th id = "Thursday">Thursday</th>
+					<td id = 'thur1'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'thur1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'thur1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'thur1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'thur1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'thur1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'thur1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rthur1' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rthur1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rthur1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rthur1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rthur1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rthur1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rthur1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'thur2'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'thur2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'thur2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'thur2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'thur2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'thur2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'thur2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rthur2' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rthur2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rthur2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rthur2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rthur2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rthur2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rthur2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'thur3'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'thur3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'thur3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'thur3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'thur3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'thur3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'thur3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rthur3' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rthur3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rthur3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rthur3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rthur3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rthur3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rthur3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'thur4'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'thur4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'thur4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'thur4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'thur4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'thur4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'thur4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rthur4' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rthur4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rthur4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rthur4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rthur4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rthur4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rthur4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'thur5'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'thur5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'thur5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'thur5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'thur5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'thur5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'thur5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rthur5' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rthur5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rthur5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rthur5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rthur5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rthur5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rthur5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'thur6'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'thur6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'thur6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'thur6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'thur6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'thur6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'thur6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rthur6' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rthur6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rthur6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rthur6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rthur6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rthur6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rthur6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+				  </tr>
+				   <tr scope="row" class = "Friday">
+					<th id = "Friday">Friday</th>
+					<td id = 'fri1'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'fri1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'fri1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'fri1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'fri1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'fri1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'fri1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rfri1' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rfri1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rfri1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rfri1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rfri1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rfri1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rfri1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'fri2'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'fri2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'fri2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'fri2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'fri2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'fri2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'fri2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rfri2' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rfri2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rfri2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rfri2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rfri2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rfri2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rfri2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'fri3'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'fri3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'fri3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'fri3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'fri3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'fri3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'fri3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rfri3' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rfri3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rfri3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rfri3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rfri3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rfri3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rfri3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'fri4'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'fri4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'fri4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'fri4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'fri4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'fri4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'fri4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rfri4' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rfri4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rfri4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rfri4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rfri4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rfri4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rfri4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'fri5'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'fri5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'fri5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'fri5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'fri5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'fri5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'fri5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rfri5' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rfri5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rfri5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rfri5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rfri5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rfri5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rfri5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'fri6'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'fri6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'fri6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'fri6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'fri6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'fri6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'fri6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rfri6' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rfri6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rfri6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rfri6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rfri6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rfri6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rfri6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+				  </tr>
+				  <tr scope="row" class = "Saturday">
+					<th id = "Saturday">Saturday</th>
+					<td id = 'sat1'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'sat1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'sat1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'sat1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'sat1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'sat1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'sat1 btn btn-outline-secondary' type = 'hidden' name = 'submit'  value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rsat1' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rsat1' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rsat1' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rsat1' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rsat1' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rsat1' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rsat1 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'sat2'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'sat2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'sat2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'sat2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'sat2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'sat2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'sat2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rsat2' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rsat2' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rsat2' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rsat2' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rsat2' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rsat2' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rsat2 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+					<td id = 'sat3'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'sat3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'sat3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'sat3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'sat3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'sat3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'sat3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rsat3' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rsat3' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rsat3' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rsat3' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rsat3' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rsat3' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rsat3 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'sat4'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'sat4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'sat4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'sat4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'sat4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'sat4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'sat4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rsat4' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rsat4' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rsat4' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rsat4' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rsat4' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rsat4' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rsat4 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'sat5'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'sat5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'sat5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'sat5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'sat5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'sat5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'sat5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rsat5' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rsat5' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rsat5' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rsat5' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rsat5' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rsat5' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rsat5 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td> 
+					<td id = 'sat6'>
+						<form method = 'POST' action = {% url 'slot_confirm' %}> {% csrf_token %}
+							<input class = 'sat6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'sat6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'sat6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'sat6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'sat6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'sat6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+						<form method = 'POST' action = {% url 'resc_slot_update' %}> {% csrf_token %}
+							<input class = 'rsat6' type = 'hidden' name = 'date' value = ''/>
+							<input class = 'rsat6' type = 'hidden' name = 'id' value = ''/>
+							<input class = 'rsat6' type = 'hidden' name = 'sem_section' value = ''/>
+							<input class = 'rsat6' type = 'hidden' name = 'day_name' value = ''/>
+							<input class = 'rsat6' type = 'hidden' name = 'hour_no' value = ''/>
+							<input class = 'rsat6' type = 'hidden' name = 'subject_id' value = ''/>
+							<input class = 'rsat6 btn btn-outline-secondary' type = 'hidden' name = 'submit' value = ''/>
+						</form>
+					</td>
+				  </tr>
+			</tbody>
+			</table>
+	</div>
+</div>
+
+
 
 <div id = 'div'>
-	
+	{% for row in resc_classes %}
+	{{row}}
+	{% endfor %}
 </div>
 <br>
 <br>
 
 <script>
-
+	var ids = [];
 	var subject =[];
 	var sem_sec =[];
 	var hour_no =[];
 	var day = [];
 	{% for row in ttdata %}
+	ids.push('{{row.id}}');
 	day.push('{{row.day_name}}');
 	hour_no.push('{{row.hour_no}}');
 	sem_sec.push('{{row.sem_section}}');
 	subject.push('{{row.subject_id}}');
 	{% endfor %}
-	
-	
 
+	{% for row,value in daysdict.items %}
+	{{row}}.innerHTML = "{{row}}<br>{{value}}";
+	{% endfor %}
 
 for (var i = 0; i < day.length; i++){
+	var currid = ids[i];
 	var currday = day[i];
 	var currhour = hour_no[i];
 	var currsem_sec = sem_sec[i];
@@ -408,57 +808,63 @@ for (var i = 0; i < day.length; i++){
 		switch(currhour){
 			case '1 hr':
 				z = document.getElementsByClassName('mon1')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '2 hr':
 				z = document.getElementsByClassName('mon2')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '3 hr':
 				z = document.getElementsByClassName('mon3')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '4 hr':
 				z = document.getElementsByClassName('mon4')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '5 hr':
 			z = document.getElementsByClassName('mon5')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '6 hr':
 			z = document.getElementsByClassName('mon6')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 		}
 		break;
@@ -466,57 +872,63 @@ for (var i = 0; i < day.length; i++){
 		switch(currhour){
 			case '1 hr':
 			z = document.getElementsByClassName('tue1')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '2 hr':
 			z = document.getElementsByClassName('tue2')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '3 hr':
 			z = document.getElementsByClassName('tue3')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '4 hr':
 			z = document.getElementsByClassName('tue4')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '5 hr':
 			z = document.getElementsByClassName('tue5')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '6 hr':
 			z = document.getElementsByClassName('tue6')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 		}
 		break;
@@ -524,57 +936,63 @@ for (var i = 0; i < day.length; i++){
 		switch(currhour){
 			case '1 hr':
 			z = document.getElementsByClassName('wed1')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '2 hr':
 			z = document.getElementsByClassName('wed2')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '3 hr':
 			z = document.getElementsByClassName('wed3')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '4 hr':
 			z = document.getElementsByClassName('wed4')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '5 hr':
 			z = document.getElementsByClassName('wed5')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '6 hr':
 			z = document.getElementsByClassName('wed6')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 		}
 		break;
@@ -582,57 +1000,63 @@ for (var i = 0; i < day.length; i++){
 		switch(currhour){
 			case '1 hr':
 			z = document.getElementsByClassName('thur1')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '2 hr':
 			z = document.getElementsByClassName('thur2')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '3 hr':
 			z = document.getElementsByClassName('thur3')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '4 hr':
 			z = document.getElementsByClassName('thur4')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '5 hr':
 			z = document.getElementsByClassName('thur5')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '6 hr':
 			z = document.getElementsByClassName('thur6')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 		}
 		break;
@@ -640,57 +1064,63 @@ for (var i = 0; i < day.length; i++){
 		switch(currhour){
 			case '1 hr':
 			z = document.getElementsByClassName('fri1')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '2 hr':
 			z = document.getElementsByClassName('fri2')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '3 hr':
 			z = document.getElementsByClassName('fri3')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '4 hr':
 			z = document.getElementsByClassName('fri4')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '5 hr':
 			z = document.getElementsByClassName('fri5')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '6 hr':
 			z = document.getElementsByClassName('fri6')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 		}
 		break;
@@ -698,64 +1128,558 @@ for (var i = 0; i < day.length; i++){
 		switch(currhour){
 	case '1 hr':
 			z = document.getElementsByClassName('sat1')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '2 hr':
 			z = document.getElementsByClassName('sat2')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '3 hr':
 			z = document.getElementsByClassName('sat3')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '4 hr':
 			z = document.getElementsByClassName('sat4')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '5 hr':
 			z = document.getElementsByClassName('sat5')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 			case '6 hr':
 			z = document.getElementsByClassName('sat6')
-				z[0].value = currsem_sec
-				z[1].value = currday
-				z[2].value = currhour
-				z[3].value = currsub
-				z[4].value =  x
-				z[4].setAttribute("type", "submit");
+				z[0].value = currid
+				z[1].value = currsem_sec
+				z[2].value = currday
+				z[3].value = currhour
+				z[4].value = currsub
+				z[5].value =  x
+				z[5].setAttribute("type", "submit");
 			break;
 		}
 		break;
 	}
 	}
-
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////
+var forms = document.getElementsByTagName("form");
+console.log(forms);
+for(var i = 0; i<forms.length; i++)
+	{forms[i].lastElementChild.disabled = true}
+switch("{{dayname}}")
+{
+	case "Monday":
+	i = 0;
+	break;
+	case "Tuesday":
+	i = 12;
+	break;
+	case "Wednesday":
+	i = 24;
+	break;
+	case "Thursday":
+	i = 36;
+	break;
+	case "Friday":
+	i = 48;
+	break;
+	case "Saturday":
+	i = 60;
+	//console.log("HURAH");
+	//console.log(i);
+	break;
+	default:
+	break;
+}
+for(var x = 0;x<12;x++)
+{
+	forms[i].lastElementChild.disabled = false;
+	console.log("YES");
+	i++;
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+	var resc_ids = [];
+	var resc_subject =[];
+	var resc_sem_sec =[];
+	var resc_hour_no =[];
+	var resc_day = [];
+	var resc_date = [];
+	{% for row in resc_classes %}
+	resc_ids.push('{{row.rescheduled_id}}');
+	resc_day.push('{{row.resc_day_name}}');
+	resc_hour_no.push('{{row.resc_hour_no}}');
+	resc_sem_sec.push('{{row.resc_sem_section}}');
+	resc_subject.push('{{row.resc_subject_id}}');
+	resc_date.push('{{row.resc_date| date:"Y-d-m"}}');
+	{% endfor %}
+
+for (var i = 0; i < day.length; i++){
+	var currid = resc_ids[i];
+	var currday = resc_day[i];
+	var currhour = resc_hour_no[i];
+	var currsem_sec = resc_sem_sec[i];
+	var currsub = resc_subject[i];
+	var currdate = resc_date[i];
+	var x = currsem_sec.concat(" ",currsub)
+	console.log(x)
+	switch(currday) {
+	case "Monday":
+		switch(currhour){
+			case '1 hr':
+				z = document.getElementsByClassName('rmon1')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '2 hr':
+				z = document.getElementsByClassName('rmon2')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '3 hr':
+				z = document.getElementsByClassName('rmon3')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '4 hr':
+				z = document.getElementsByClassName('rmon4')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '5 hr':
+			z = document.getElementsByClassName('rmon5')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '6 hr':
+			z = document.getElementsByClassName('rmon6')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+		}
+		break;
+	case 'Tuesday':
+		switch(currhour){
+			case '1 hr':
+			z = document.getElementsByClassName('rtue1')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '2 hr':
+			z = document.getElementsByClassName('rtue2')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '3 hr':
+			z = document.getElementsByClassName('rtue3')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '4 hr':
+			z = document.getElementsByClassName('rtue4')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '5 hr':
+			z = document.getElementsByClassName('rtue5')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '6 hr':
+			z = document.getElementsByClassName('rtue6')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+		}
+		break;
+	case 'Wednesday':
+		switch(currhour){
+			case '1 hr':
+			z = document.getElementsByClassName('rwed1')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '2 hr':
+			z = document.getElementsByClassName('rwed2')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '3 hr':
+			z = document.getElementsByClassName('rwed3')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '4 hr':
+			z = document.getElementsByClassName('rwed4')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '5 hr':
+			z = document.getElementsByClassName('rwed5')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '6 hr':
+			z = document.getElementsByClassName('rwed6')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+		}
+		break;
+	case 'Thursday':
+		switch(currhour){
+			case '1 hr':
+			z = document.getElementsByClassName('rthur1')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '2 hr':
+			z = document.getElementsByClassName('rthur2')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '3 hr':
+			z = document.getElementsByClassName('rthur3')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '4 hr':
+			z = document.getElementsByClassName('rthur4')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '5 hr':
+			z = document.getElementsByClassName('rthur5')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '6 hr':
+			z = document.getElementsByClassName('rthur6')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+		}
+		break;
+	case 'Friday':
+		switch(currhour){
+			case '1 hr':
+			z = document.getElementsByClassName('rfri1')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '2 hr':
+			z = document.getElementsByClassName('rfri2')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '3 hr':
+			z = document.getElementsByClassName('rfri3')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '4 hr':
+			z = document.getElementsByClassName('rfri4')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '5 hr':
+			z = document.getElementsByClassName('rfri5')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '6 hr':
+			z = document.getElementsByClassName('rfri6')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+		}
+		break;
+	case 'Saturday':{
+		switch(currhour){
+	case '1 hr':
+			z = document.getElementsByClassName('rsat1')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '2 hr':
+			z = document.getElementsByClassName('rsat2')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '3 hr':
+			z = document.getElementsByClassName('rsat3')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '4 hr':
+			z = document.getElementsByClassName('rsat4')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '5 hr':
+			z = document.getElementsByClassName('rsat5')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+			case '6 hr':
+			z = document.getElementsByClassName('rsat6')
+				z[0].value = currdate
+				z[1].value = currid
+				z[2].value = currsem_sec
+				z[3].value = currday
+				z[4].value = currhour
+				z[5].value = currsub
+				z[6].value =  x
+				z[6].setAttribute("type", "submit");
+			break;
+		}
+		break;
+	}
+	}
+}
+
+
+
 
 
 </script>

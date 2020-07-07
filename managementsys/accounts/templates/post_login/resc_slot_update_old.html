@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+ <title>Page Title</title>
+</head>
+
+<body>
+	{% if request.user.is_authenticated %}
+<div>
+	<ul>
+		<br>
+		<li>Hello {{ user.get_username}}</li> <br>
+		<li> <button><a href="/accounts/logout">LOGOUT</a></button></li>
+	</ul>
+</div>
+<div>
+	<form method = 'POST' action = {% url 'resc_slot_updated' %}>
+		{% csrf_token %}
+		<input class = 'mon1' type = 'hidden' name = 'date' value = '{{date}}'/>
+		<input class = 'mon1' type = 'hidden' name = 'id' value = '{{id}}'/>
+		<input class = 'mon1' type = 'hidden' name = 'sem_section' value = '{{sem_section}}'/>
+		<input class = 'mon1' type = 'hidden' name = 'day_name' value = '{{day_name}}'/>
+		<input class = 'mon1' type = 'hidden' name = 'hour_no' value = '{{hour_no}}'/>
+		<input class = 'mon1' type = 'hidden' name = 'subject_id' value = '{{subject_id}}'/>
+		Topic Discussed
+		<input type = 'text' name = 'topic' value = ''/><br>
+		Description
+<textarea name= "description" cols="40" rows="20" placeholder="Enter comments about the topic discussed"></textarea><br>
+		<input id = 'date' type = 'date' name = 'date' value = '' ><br>
+		<input type = 'submit' value = 'SUBMIT'/>
+	</form>
+</div>
+<br>
+<br>
+
+{{date}}
+<br>
+<br>
+{{id}}
+{{sem_section}}
+{{day_name}}
+{{hour_no}}
+{{subject_id}}
+<a href = {% url 'post_login' %}><button> GO BACK </button></a>
+<script>
+	getDate()
+function getDate() {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd = '0'+dd
+  } 
+
+  if(mm<10) {
+      mm = '0'+mm
+  } 
+
+  today = yyyy + '-' + mm + '-' + dd;
+  console.log(today);
+  document.getElementById("date").value = today;
+}
+
+</script>
+{% endif %}
+
+</body>
+</html>
+

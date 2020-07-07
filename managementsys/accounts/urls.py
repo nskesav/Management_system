@@ -25,6 +25,9 @@ urlpatterns = [
 	path('register/',v.register, name = 'register'),
 	path('post_login/',v.post_login, name = 'post_login'),
 	path('slot_confirm/',v.slot_confirm, name = 'slot_confirm'),
+	path('resc_slot_update/',v.resc_slot_update, name = 'resc_slot_update'),
+	path('slot_updated/',v.slot_updated, name = 'slot_updated'),
+	path('resc_slot_updated/',v.resc_slot_updated, name = 'resc_slot_updated'),
 #	path('reset_password/',v.reset_password, name = 'reset_password'),
 	
 ]

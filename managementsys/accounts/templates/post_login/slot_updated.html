@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+ <title>Slot Update</title>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+	{% if request.user.is_authenticated %}
+
+<nav class="nav nav-fill justify-content-end " style="padding: 10px;font-size: larger;background-color: rgb(229, 230, 227);">
+  <a class="nav-link  disabled">{{ user.get_username}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+  <button class="btn btn-danger" ><a href="/accounts/logout" style="color: white;text-decoration: none;">LOGOUT</a></button>
+</nav>
+<br>
+<br>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+      <h1 class="display-4">Slot Successfully updated.</h1>
+      <p class="lead">You can go back and edit the slot again</p>
+      <a href = {% url 'post_login' %}><button class="btn btn-outline-info"> HOME </button></a>
+    </div>
+  </div>
+
+	
+<div>
+  {% for row in slot_details %}
+	{{row.date}}
+{% endfor %}
+{{slot_date}}
+<br>
+<br>
+{{id}}
+{{sem_section}}
+{{day_name}}
+{{hour_no}}
+{{subject_id}}
+</div>
+
+<script>
+	getDate()
+function getDate() {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+
+  if(dd<10) {
+      dd = '0'+dd
+  } 
+
+  if(mm<10) {
+      mm = '0'+mm
+  } 
+
+  today = yyyy + '-' + mm + '-' + dd;
+  console.log(today);
+  document.getElementById("date").value = today;
+}
+
+</script>
+{% endif %}
+
+</body>
+</html>
+

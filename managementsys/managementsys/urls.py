@@ -28,5 +28,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 	path('accounts/', include('accounts.urls')),
 	url(r'^jsi18n/$', JavaScriptCatalog.as_view(), js_info_dict),
-
+	url(r'^report_builder/', include('report_builder.urls'))
 ]
